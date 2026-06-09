@@ -1,0 +1,7 @@
+**/values-secret.yaml
+**/*.tfvars
+**/.terraform/
+**/terraform.tfstate*
+.env
+__pycache__/
+*.pyc
