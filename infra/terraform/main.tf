@@ -80,7 +80,7 @@ resource "google_sql_database" "langfuse" {
 # Generate random password for Langfuse DB
 resource "random_password" "langfuse_db_password" {
   length  = 32
-  special = true
+  special = false
 }
 
 resource "google_sql_user" "langfuse" {
@@ -105,6 +105,42 @@ resource "google_secret_manager_secret" "langfuse_db_secret" {
 resource "google_secret_manager_secret_version" "langfuse_db_secret_version" {
   secret      = google_secret_manager_secret.langfuse_db_secret.id
   secret_data = random_password.langfuse_db_password.result
+}
+
+# LiteLLM database
+resource "google_sql_database" "litellm" {
+  name     = "litellm"
+  instance = google_sql_database_instance.langfuse.name
+}
+
+# Generate random password for LiteLLM DB
+resource "random_password" "litellm_db_password" {
+  length  = 32
+  special = false  # LiteLLM connection string can break with special chars having @ etc..
+}
+
+resource "google_sql_user" "litellm" {
+  name     = "litellm"
+  instance = google_sql_database_instance.langfuse.name
+  password = random_password.litellm_db_password.result
+}
+
+# Store LiteLLM password in Secret Manager
+resource "google_secret_manager_secret" "litellm_db_secret" {
+  secret_id = "langops-litellm-db-password"
+
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+
+resource "google_secret_manager_secret_version" "litellm_db_secret_version" {
+  secret      = google_secret_manager_secret.litellm_db_secret.id
+  secret_data = random_password.litellm_db_password.result
 }
 
 # Artifact Registry
