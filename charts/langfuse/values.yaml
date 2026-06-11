@@ -32,3 +32,9 @@ clickhouse:
   auth:
     existingSecret: "langfuse-app-secrets"
     existingSecretKey: "clickhouse-password"
+
+redis:
+  deploy: true
+  auth:
+    existingSecret: "langfuse-redis"
+    existingSecretPasswordKey: "valkey-password"
