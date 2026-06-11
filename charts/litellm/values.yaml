@@ -1,0 +1,55 @@
+replicaCount: 1
+
+# Master key from existing secret
+masterkeySecretName: "litellm-masterkey"
+masterkeySecretKey: "masterkey"
+
+# Inject API keys as env vars
+environmentSecrets:
+  - litellm-env-secrets
+
+# Use existing CloudSQL — disable bundled postgres
+db:
+  useExisting: true
+  deployStandalone: false
+  endpoint: "10.151.0.3"
+  database: "litellm"
+  secret:
+    name: litellm-db-secret
+    usernameKey: username
+    passwordKey: password
+
+# LiteLLM proxy config
+proxy_config:
+  model_list:
+    - model_name: gpt-4o
+      litellm_params:
+        model: openai/gpt-4o
+        api_key: os.environ/OPENAI_API_KEY
+    - model_name: claude-sonnet
+      litellm_params:
+        model: anthropic/claude-sonnet-4-6
+        api_key: os.environ/ANTHROPIC_API_KEY
+
+  litellm_settings:
+    success_callback: ["langfuse"]
+    failure_callback: ["langfuse"]
+
+  general_settings:
+    master_key: os.environ/PROXY_MASTER_KEY
+
+# Migration job - ArgoCD PreSync hook
+migrationJob:
+  enabled: true
+  hooks:
+    argocd:
+      enabled: true
+    helm:
+      enabled: false
+
+service:
+  type: ClusterIP
+  port: 4000
+
+# Prevent chart from generating a new masterkey secret - use existing
+masterkey: ""
