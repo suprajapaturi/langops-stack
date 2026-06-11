@@ -1,0 +1,30 @@
+kube-prometheus-stack:
+
+  grafana:
+    enabled: true
+    adminPassword: ""
+    existingSecret: "grafana-admin-secret"
+    existingSecretPasswordKey: "admin-password"
+    persistence:
+      enabled: true
+      size: 5Gi
+
+  prometheus:
+    prometheusSpec:
+      additionalScrapeConfigs:
+        - job_name: litellm
+          static_configs:
+            - targets:
+                - "litellm.litellm.svc.cluster.local:4000"
+          metrics_path: /metrics
+          scrape_interval: 30s
+      retention: 15d
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            resources:
+              requests:
+                storage: 20Gi
+
+  alertmanager:
+    enabled: false
