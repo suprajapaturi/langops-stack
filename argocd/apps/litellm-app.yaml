@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: litellm
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: ghcr.io/berriai
+      chart: litellm-helm
+      targetRevision: "0.1.577"
+      helm:
+        valueFiles:
+          - $values/charts/litellm/values.yaml
+    - repoURL: https://github.com/suprajapaturi/langops-stack.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: litellm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
