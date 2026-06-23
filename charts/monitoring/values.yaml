@@ -44,9 +44,8 @@ kube-prometheus-stack:
   kubeProxy:
     enabled: false
 
-  # CoreDNS runs as real pods on GKE
   coreDns:
-    enabled: true
+    enabled: false
 
   crds:
     enabled: true
