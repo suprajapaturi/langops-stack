@@ -1,5 +1,4 @@
 kube-prometheus-stack:
-
   grafana:
     enabled: true
     adminPassword: ""
@@ -28,3 +27,26 @@ kube-prometheus-stack:
 
   alertmanager:
     enabled: false
+
+  # GKE: kube-system is managed, operator cannot write here
+  kubelet:
+    enabled: false
+
+  kubeControllerManager:
+    enabled: false
+
+  kubeScheduler:
+    enabled: false
+
+  kubeEtcd:
+    enabled: false
+
+  kubeProxy:
+    enabled: false
+
+  # CoreDNS runs as real pods on GKE
+  coreDns:
+    enabled: true
+
+  crds:
+    enabled: true
