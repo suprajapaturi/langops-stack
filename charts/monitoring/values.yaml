@@ -1,51 +1,53 @@
-kube-prometheus-stack:
-  grafana:
+grafana:
+  enabled: true
+  adminPassword: ""
+  existingSecret: "grafana-admin-secret"
+  existingSecretPasswordKey: "admin-password"
+  persistence:
     enabled: true
-    adminPassword: ""
-    existingSecret: "grafana-admin-secret"
-    existingSecretPasswordKey: "admin-password"
-    persistence:
-      enabled: true
-      size: 5Gi
+    size: 5Gi
 
-  prometheus:
-    prometheusSpec:
-      additionalScrapeConfigs:
-        - job_name: litellm
-          static_configs:
-            - targets:
-                - "litellm.litellm.svc.cluster.local:4000"
-          metrics_path: /metrics
-          scrape_interval: 30s
-      retention: 15d
-      storageSpec:
-        volumeClaimTemplate:
-          spec:
-            resources:
-              requests:
-                storage: 20Gi
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: litellm
+        static_configs:
+          - targets:
+              - "litellm.litellm.svc.cluster.local:4000"
+        metrics_path: /metrics
+        scrape_interval: 30s
+    retention: 15d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 20Gi
 
-  alertmanager:
-    enabled: false
+alertmanager:
+  enabled: false
 
-  # GKE: kube-system is managed, operator cannot write here
-  kubelet:
-    enabled: false
+# GKE: kube-system is managed, disable all control plane scraping
+kubernetesServiceMonitors:
+  enabled: false
 
-  kubeControllerManager:
-    enabled: false
+kubelet:
+  enabled: false
 
-  kubeScheduler:
-    enabled: false
+kubeControllerManager:
+  enabled: false
 
-  kubeEtcd:
-    enabled: false
+kubeScheduler:
+  enabled: false
 
-  kubeProxy:
-    enabled: false
+kubeEtcd:
+  enabled: false
 
-  coreDns:
-    enabled: false
+kubeProxy:
+  enabled: false
+  
+coreDns:
+  enabled: false
 
-  crds:
-    enabled: true
+crds:
+  enabled: true
