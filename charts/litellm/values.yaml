@@ -1,11 +1,14 @@
 replicaCount: 1
 
+# Master key from existing secret
 masterkeySecretName: "litellm-masterkey"
 masterkeySecretKey: "masterkey"
 
+# Inject API keys as env vars
 environmentSecrets:
   - litellm-env-secrets
 
+# Use existing CloudSQL — disable bundled postgres
 db:
   useExisting: true
   deployStandalone: false
@@ -16,6 +19,7 @@ db:
     usernameKey: username
     passwordKey: password
 
+# LiteLLM proxy config
 proxy_config:
   model_list:
     - model_name: gemini-pro
@@ -35,6 +39,7 @@ proxy_config:
   general_settings:
     master_key: os.environ/PROXY_MASTER_KEY
 
+# Migration job - ArgoCD PreSync hook
 migrationJob:
   enabled: true
   hooks:
@@ -47,4 +52,5 @@ service:
   type: ClusterIP
   port: 4000
 
+# Prevent chart from generating a new masterkey secret - use existing
 masterkey: ""
