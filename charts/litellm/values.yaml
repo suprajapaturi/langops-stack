@@ -22,13 +22,14 @@ db:
 # LiteLLM proxy config
 proxy_config:
   model_list:
-    - model_name: gpt-4o
+    - model_name: gemini-pro
       litellm_params:
-        model: openai/gpt-4o
-        api_key: os.environ/OPENAI_API_KEY
+        model: gemini/gemini-1.5-pro
+        api_key: os.environ/GEMINI_API_KEY
+
     - model_name: claude-sonnet
       litellm_params:
-        model: anthropic/claude-sonnet-4-6
+        model: anthropic/claude-3-5-sonnet-20241022
         api_key: os.environ/ANTHROPIC_API_KEY
 
   litellm_settings:
