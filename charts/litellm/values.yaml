@@ -33,6 +33,21 @@ proxy_config:
         model: anthropic/claude-3-5-sonnet-20241022
         api_key: os.environ/ANTHROPIC_API_KEY
 
+    - model_name: llama
+        litellm_params:
+          model: openrouter/meta-llama/llama-3.3-70b-instruct:free
+          api_key: os.environ/OPENROUTER_API_KEY
+
+      - model_name: deepseek
+        litellm_params:
+          model: openrouter/deepseek/deepseek-r1:free
+          api_key: os.environ/OPENROUTER_API_KEY
+
+      - model_name: gemma
+        litellm_params:
+          model: openrouter/google/gemma-3-12b-it:free
+          api_key: os.environ/OPENROUTER_API_KEY
+
   litellm_settings:
     success_callback: ["langfuse"]
     failure_callback: ["langfuse"]
