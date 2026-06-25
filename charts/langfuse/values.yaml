@@ -15,6 +15,25 @@ langfuse:
     secretKeyRef:
       name: langfuse-app-secrets
       key: encryption-key
+s3:
+  deploy: true
+  bucket: "langfuse"
+  region: "auto"
+  endpoint: "http://langfuse-s3.langfuse.svc.cluster.local:9000"
+  forcePathStyle: true
+  accessKeyId:
+    secretKeyRef:
+      name: langfuse-s3
+      key: root-user
+  secretAccessKey:
+    secretKeyRef:
+      name: langfuse-s3
+      key: root-password
+  auth:
+    existingSecret: "langfuse-s3"
+    rootUserSecretKey: "root-user"
+    rootPasswordSecretKey: "root-password"
+  defaultBuckets: "langfuse"
 
 postgresql:
   deploy: false
