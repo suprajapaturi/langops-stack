@@ -4,7 +4,7 @@ image:
   repository: us-central1-docker.pkg.dev/langops-stack/apps/langops-rag-app
   pullPolicy: IfNotPresent
   tag: "latest"
-  digest: "sha256:23b499359a77e9c2d96b3383aea8a1528f077a53d08dcbf8bed7f655825e7229"
+  digest: "sha256:2ac43c47cb23a8c71a8341897b486e7a0425779c7e693c65b42630c5e05b1f78"
 
 service:
   type: ClusterIP
