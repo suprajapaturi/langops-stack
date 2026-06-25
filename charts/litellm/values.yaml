@@ -22,6 +22,11 @@ db:
 # LiteLLM proxy config
 proxy_config:
   model_list:
+    - model_name: free
+      litellm_params:
+        model: openrouter/free
+        api_key: os.environ/OPENROUTER_API_KEY
+
     - model_name: gemini-pro
       litellm_params:
         model: gemini/gemini-1.5-flash
