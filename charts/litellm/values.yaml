@@ -74,4 +74,4 @@ service:
   port: 4000
 
 # Prevent chart from generating a new masterkey secret - use existing
-masterkey: ""
+# masterkey: ""
