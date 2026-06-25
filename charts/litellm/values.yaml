@@ -24,7 +24,7 @@ proxy_config:
   model_list:
     - model_name: free
       litellm_params:
-        model: openrouter/free
+        model: openrouter/openai/gpt-oss-120b:free
         api_key: os.environ/OPENROUTER_API_KEY
 
     - model_name: gemini-pro
