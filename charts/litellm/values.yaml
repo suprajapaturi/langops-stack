@@ -24,7 +24,7 @@ proxy_config:
   model_list:
     - model_name: gemini-pro
       litellm_params:
-        model: gemini/gemini-1.5-pro
+        model: gemini/gemini-1.5-flash
         api_key: os.environ/GEMINI_API_KEY
 
     - model_name: claude-sonnet
