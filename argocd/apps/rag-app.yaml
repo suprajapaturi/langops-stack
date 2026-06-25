@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rag-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/suprajapaturi/langops-stack.git
+    targetRevision: main
+    path: charts/rag-app
+    helm:
+      valueFiles: [values.yaml]
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rag-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
