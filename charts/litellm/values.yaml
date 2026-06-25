@@ -54,8 +54,8 @@ proxy_config:
         api_key: os.environ/OPENROUTER_API_KEY
 
   litellm_settings:
-    success_callback: ["langfuse", "prometheus"]
-    failure_callback: ["langfuse", "prometheus"]
+    success_callback: ["langfuse"]
+    failure_callback: ["langfuse"]
 
   general_settings:
     master_key: os.environ/PROXY_MASTER_KEY
