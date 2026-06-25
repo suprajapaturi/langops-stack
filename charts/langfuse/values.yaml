@@ -15,6 +15,7 @@ langfuse:
     secretKeyRef:
       name: langfuse-app-secrets
       key: encryption-key
+
 s3:
   deploy: true
   bucket: "langfuse"
@@ -23,16 +24,16 @@ s3:
   forcePathStyle: true
   accessKeyId:
     secretKeyRef:
-      name: langfuse-s3
-      key: root-user
+      name: langfuse-app-secrets
+      key: minio-access-key
   secretAccessKey:
     secretKeyRef:
-      name: langfuse-s3
-      key: root-password
+      name: langfuse-app-secrets
+      key: minio-secret-key
   auth:
-    existingSecret: "langfuse-s3"
-    rootUserSecretKey: "root-user"
-    rootPasswordSecretKey: "root-password"
+    existingSecret: "langfuse-app-secrets"
+    rootUserSecretKey: "minio-access-key"
+    rootPasswordSecretKey: "minio-secret-key"
   defaultBuckets: "langfuse"
 
 postgresql:
