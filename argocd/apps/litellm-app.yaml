@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: ghcr.io/berriai
       chart: litellm-helm
-      targetRevision: "0.1.577"
+      targetRevision: "0.1.820"
       helm:
         valueFiles:
           - $values/charts/litellm/values.yaml
