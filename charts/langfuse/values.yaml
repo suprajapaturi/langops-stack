@@ -18,6 +18,7 @@ langfuse:
 
 s3:
   deploy: true
+  replicaCount: 1
   bucket: "langfuse"
   region: "auto"
   endpoint: "http://langfuse-s3.langfuse.svc.cluster.local:9000"
