@@ -16,6 +16,13 @@ langfuse:
       name: langfuse-app-secrets
       key: encryption-key
 
+s3:
+  deploy: true
+  secretAccessKey:
+    secretKeyRef:
+      name: langfuse-s3
+      key: root-password
+
 # s3:
 #   deploy: true
 #   replicaCount: 1
