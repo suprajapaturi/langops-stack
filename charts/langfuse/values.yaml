@@ -17,6 +17,7 @@ langfuse:
       key: encryption-key
 
 s3:
+  deploy: true
   secretAccessKey:
     secretKeyRef:
       name: langfuse-s3
