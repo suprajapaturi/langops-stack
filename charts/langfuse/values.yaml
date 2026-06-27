@@ -16,26 +16,26 @@ langfuse:
       name: langfuse-app-secrets
       key: encryption-key
 
-s3:
-  deploy: true
-  replicaCount: 1
-  bucket: "langfuse"
-  region: "auto"
-  endpoint: "http://langfuse-s3.langfuse.svc.cluster.local:9000"
-  forcePathStyle: true
-  accessKeyId:
-    secretKeyRef:
-      name: langfuse-app-secrets
-      key: minio-access-key
-  secretAccessKey:
-    secretKeyRef:
-      name: langfuse-app-secrets
-      key: minio-secret-key
-  auth:
-    existingSecret: "langfuse-app-secrets"
-    rootUserSecretKey: "minio-access-key"
-    rootPasswordSecretKey: "minio-secret-key"
-  defaultBuckets: "langfuse"
+# s3:
+#   deploy: true
+#   replicaCount: 1
+#   bucket: "langfuse"
+#   region: "auto"
+#   endpoint: "http://langfuse-s3.langfuse.svc.cluster.local:9000"
+#   forcePathStyle: true
+#   accessKeyId:
+#     secretKeyRef:
+#       name: langfuse-app-secrets
+#       key: minio-access-key
+#   secretAccessKey:
+#     secretKeyRef:
+#       name: langfuse-app-secrets
+#       key: minio-secret-key
+#   auth:
+#     existingSecret: "langfuse-app-secrets"
+#     rootUserSecretKey: "minio-access-key"
+#     rootPasswordSecretKey: "minio-secret-key"
+#   defaultBuckets: "langfuse"
 
 postgresql:
   deploy: false
