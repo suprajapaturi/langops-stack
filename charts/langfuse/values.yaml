@@ -23,11 +23,11 @@ langfuse:
 #       name: langfuse-s3
 #       key: root-password
 
-s3:
-  auth:
-    existingSecret: "langfuse-app-secrets"
-    rootUserSecretKey: "minio-access-key"
-    rootPasswordSecretKey: "minio-secret-key"
+# s3:
+#   auth:
+#     existingSecret: "langfuse-app-secrets"
+#     rootUserSecretKey: "minio-access-key"
+#     rootPasswordSecretKey: "minio-secret-key"
 
 # s3:
 #   deploy: true
@@ -67,8 +67,8 @@ clickhouse:
     existingSecret: "langfuse-app-secrets"
     existingSecretKey: "clickhouse-password"
 
-redis:
-  deploy: true
-  auth:
-    existingSecret: "langfuse-redis"
-    existingSecretPasswordKey: "valkey-password"
+# redis:
+#   deploy: true
+#   auth:
+#     existingSecret: "langfuse-redis"
+#     existingSecretPasswordKey: "valkey-password"

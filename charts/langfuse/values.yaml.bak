@@ -1,0 +1,61 @@
+langfuse:
+  salt:
+    secretKeyRef:
+      name: langfuse-app-secrets
+      key: salt
+
+  nextauth:
+    url: "http://localhost:3000"
+    secret:
+      secretKeyRef:
+        name: langfuse-app-secrets
+        key: nextauth-secret
+
+  encryptionKey:
+    secretKeyRef:
+      name: langfuse-app-secrets
+      key: encryption-key
+
+s3:
+  deploy: true
+  replicaCount: 1
+  bucket: "langfuse"
+  region: "auto"
+  endpoint: "http://langfuse-s3.langfuse.svc.cluster.local:9000"
+  forcePathStyle: true
+  accessKeyId:
+    secretKeyRef:
+      name: langfuse-app-secrets
+      key: minio-access-key
+  secretAccessKey:
+    secretKeyRef:
+      name: langfuse-app-secrets
+      key: minio-secret-key
+  auth:
+    existingSecret: "langfuse-app-secrets"
+    rootUserSecretKey: "minio-access-key"
+    rootPasswordSecretKey: "minio-secret-key"
+  defaultBuckets: "langfuse"
+
+postgresql:
+  deploy: false
+  host: "10.151.0.3"
+  port: 5432
+  auth:
+    username: "langfuse"
+    database: "langfuse"
+    existingSecret: "langfuse-db-secret"
+    secretKeys:
+      userPasswordKey: "password"
+
+clickhouse:
+  deploy: true
+  auth:
+    existingSecret: "langfuse-app-secrets"
+    existingSecretKey: "clickhouse-password"
+
+redis:
+  deploy: true
+  auth:
+    existingSecret: "langfuse-redis"
+    existingSecretPasswordKey: "valkey-password"
