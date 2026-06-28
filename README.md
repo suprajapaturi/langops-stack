@@ -203,7 +203,7 @@ kubectl create secret generic langfuse-app-secrets \
   --from-literal=clickhouse-password=$(openssl rand -hex 16) \
   --from-literal=minio-access-key=minio \
   --from-literal=minio-secret-key=$(openssl rand -hex 16) \
-  --from-literal=redis-password=$(openssl rand -hex 16) \
+  --from-literal=redis-password=$(openssl rand -hex 16)
 
 # DB password — retrieved from GCP Secret Manager (stored there by Terraform)
 kubectl create secret generic langfuse-db-secret \
