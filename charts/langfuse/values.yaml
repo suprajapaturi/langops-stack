@@ -70,5 +70,5 @@ clickhouse:
 redis:
   deploy: true
   auth:
-    existingSecret: "langfuse-redis"
-    existingSecretPasswordKey: "valkey-password"
+    existingSecret: "langfuse-app-secrets"
+    existingSecretPasswordKey: "redis-password"
