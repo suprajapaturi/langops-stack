@@ -67,8 +67,8 @@ clickhouse:
     existingSecret: "langfuse-app-secrets"
     existingSecretKey: "clickhouse-password"
 
-# redis:
-#   deploy: true
-#   auth:
-#     existingSecret: "langfuse-app-secrets"
-#     existingSecretPasswordKey: "redis-password"
+redis:
+  deploy: true
+  auth:
+    existingSecret: "langfuse-app-secrets"
+    existingSecretPasswordKey: "redis-password"
