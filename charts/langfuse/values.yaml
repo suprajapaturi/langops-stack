@@ -16,18 +16,18 @@ langfuse:
       name: langfuse-app-secrets
       key: encryption-key
 
-s3:
-  deploy: true
-  secretAccessKey:
-    secretKeyRef:
-      name: langfuse-s3
-      key: root-password
-
 # s3:
-#   auth:
-#     existingSecret: "langfuse-s3"
-#     rootUserSecretKey: "root-user"
-#     rootPasswordSecretKey: "root-password"
+#   deploy: true
+#   secretAccessKey:
+#     secretKeyRef:
+#       name: langfuse-s3
+#       key: root-password
+
+s3:
+  auth:
+    existingSecret: "langfuse-app-secrets"
+    rootUserSecretKey: "minio-access-key"
+    rootPasswordSecretKey: "minio-secret-key"
 
 # s3:
 #   deploy: true
